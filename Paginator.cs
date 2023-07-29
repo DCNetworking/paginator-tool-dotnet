@@ -107,6 +107,7 @@ public class Paginator<T> : IPaginator<T> where T : class
 		{
 			_currentPage = pageNum;
 		}
+
 	}
 	/// <summary>
 	/// Returns the IEnumerable collection representing the current page's items.
