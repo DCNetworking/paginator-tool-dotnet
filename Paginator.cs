@@ -103,7 +103,7 @@ public class Paginator<T> : IPaginator<T> where T : class
 	/// </summary>
 	public virtual void SetPage(int pageNum)
 	{
-		if (pageNum > 0 && pageNum < _numberOfPages)
+		if (pageNum > 0 && pageNum <= _numberOfPages)
 		{
 			_currentPage = pageNum;
 		}
