@@ -64,6 +64,7 @@ Paginator<string> paginator = myData.Paginator(range: 10, prevPageKey: ConsoleKe
 
 - `SetRange(int range)`: Sets a new range (number of items per page) and recalculates the total number of pages.
 - `SetStepChange(int stepChange)`: Sets a new step change value, representing the number of pages to skip when moving forward or backward.
+- `SetPage(int numPage)`: Moves to the given page if there is one (within the total number of pages).
 - `SetNext()`: Moves to the next page if there is one (within the total number of pages).
 - `SetPrev()`: Moves to the previous page if there is one (starting from page 1).
 - `CurrentState()`: Returns the `IEnumerable` collection representing the current page's items.
