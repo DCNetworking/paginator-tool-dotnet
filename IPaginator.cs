@@ -12,23 +12,23 @@ namespace PaginatorTool
         /// </summary>
         /// <param name="range">The new range value. Must be greater than 0.</param>
         void SetRange(int range);
-
         /// <summary>
         /// Moves to the next page.
         /// </summary>
         void SetNext();
-
         /// <summary>
         /// Moves to the previous page.
         /// </summary>
         void SetPrev();
-
+        /// <summary>
+        /// Moves to the pageNum page if there is one (starting from page 1).
+        /// </summary>
+        void SetPage(int pageNum);
         /// <summary>
         /// Returns the IEnumerable collection representing the current page's items.
         /// </summary>
         /// <returns>The IEnumerable collection for the current page.</returns>
         IEnumerable<T> CurrentState();
-
         /// <summary>
         /// Gets information about the current page and the total number of pages.
         /// </summary>

@@ -29,7 +29,7 @@ IEnumerable<string> myData = GetYourData(); // Replace with your actual data sou
 
 3. Use the Paginator class to create a paginator:
 ```csharp
-Paginator<string> paginator = new Paginator<string>(myData, range: 10, prevPageKey: ConsoleKey.LeftArrow, nextPageKey: ConsoleKey.RightArrow, stepChange: 1);
+Paginator<string> paginator = new Paginator<string>(myData, range: 10, stepChange: 1);
 ```
 4. Now, you can interact with the paginator to navigate through the data:
 ```csharp
@@ -47,7 +47,7 @@ using PaginatorTool.Extension;
 
 IEnumerable<string> myData = GetYourData(); // Replace with your actual data source.
 
-Paginator<string> paginator = myData.Paginator(range: 10, prevPageKey: ConsoleKey.LeftArrow, nextPageKey: ConsoleKey.RightArrow, stepChange: 1);
+Paginator<string> paginator = myData.Paginator(range: 10, stepChange: 1);
 ```
 
 # API Reference
@@ -69,11 +69,10 @@ Paginator<string> paginator = myData.Paginator(range: 10, prevPageKey: ConsoleKe
 - `SetPrev()`: Moves to the previous page if there is one (starting from page 1).
 - `CurrentState()`: Returns the `IEnumerable` collection representing the current page's items.
 - `GetPageStateInfo()`: Gets information about the current page and the total number of pages.
-- `ChangePageByKey(ConsoleKey userKeyAction)`: Moves to the next or previous page based on the provided user action.
 - `SetNumberOfPages()`: Calculates and sets the total number of pages based on the number of items and the range.
 
 ## Extension Method
 
 ### Method
 
-- `Paginator<T> Paginator<T>(this IEnumerable<T> enumerator, int range = 10, ConsoleKey prevPageKey = ConsoleKey.LeftArrow, ConsoleKey nextPageKey = ConsoleKey.RightArrow, int stepChange = 1) where T : class`: Creates a `Paginator<T>` instance from the given `IEnumerable` collection with customizable pagination settings.
+- `Paginator<T> Paginator<T>(this IEnumerable<T> enumerator, int range = 10, int stepChange = 1) where T : class`: Creates a `Paginator<T>` instance from the given `IEnumerable` collection with customizable pagination settings.

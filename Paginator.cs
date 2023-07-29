@@ -5,13 +5,10 @@
 /// <typeparam name="T">The type of items in the IEnumerable collection.</typeparam>
 public class Paginator<T> : IPaginator<T> where T : class
 {
-
-
 	/// <summary>
 	/// Gets the number of items to be displayed per page.
 	/// </summary>
 	public int Range { get; private set; }
-
 	/// <summary>
 	/// Gets the step change value, representing the number of pages to skip when moving forward or backward.
 	/// </summary>
@@ -19,8 +16,6 @@ public class Paginator<T> : IPaginator<T> where T : class
 
 	#region Private
 	private readonly IEnumerable<T> _query;
-	private readonly ConsoleKey _prevPageKey;
-	private readonly ConsoleKey _nextPageKey;
 	private int _numberOfPages;
 	private int _currentPage;
 	#endregion
@@ -30,16 +25,12 @@ public class Paginator<T> : IPaginator<T> where T : class
 	/// </summary>
 	/// <param name="query">The IEnumerable collection to be paginated.</param>
 	/// <param name="range">The number of items to be displayed per page. Must be greater than 0.</param>
-	/// <param name="prevPageKey">The ConsoleKey representing the key to navigate to the previous page.</param>
-	/// <param name="nextPageKey">The ConsoleKey representing the key to navigate to the next page.</param>
 	/// <param name="stepChange">The step change value, representing the number of pages to skip when moving forward or backward.</param>
 	/// <exception cref="ArgumentNullException">Thrown when the 'query' parameter is null.</exception>
 	/// <exception cref="ArgumentException">Thrown when 'range' is less than or equal to 0.</exception>
 	public Paginator(
 		IEnumerable<T> query,
 		int range = 10,
-		ConsoleKey prevPageKey = ConsoleKey.LeftArrow,
-		ConsoleKey nextPageKey = ConsoleKey.RightArrow,
 		int stepChange = 1)
 	{
 		if (range <= 0)
@@ -47,8 +38,6 @@ public class Paginator<T> : IPaginator<T> where T : class
 
 		_query = query ?? throw new ArgumentNullException(nameof(query));
 		Range = range;
-		_prevPageKey = prevPageKey;
-		_nextPageKey = nextPageKey;
 		_currentPage = 1;
 		StepChange = stepChange;
 		SetNumberOfPages();
@@ -126,23 +115,6 @@ public class Paginator<T> : IPaginator<T> where T : class
 	{
 		return (_currentPage, _numberOfPages);
 	}
-
-	/// <summary>
-	/// Moves to the next or previous page based on the provided user action.
-	/// </summary>
-	/// <param name="userKeyAction">The ConsoleKey representing the user action.</param>
-	public void ChangePageByKey(ConsoleKey userKeyAction)
-	{
-		if (userKeyAction == _prevPageKey && _currentPage > 1)
-		{
-			SetPrev();
-		}
-		else if (userKeyAction == _nextPageKey && _currentPage < _numberOfPages)
-		{
-			SetNext();
-		}
-	}
-
 	/// <summary>
 	/// Calculates and sets the total number of pages based on the number of items and the range.
 	/// </summary>
